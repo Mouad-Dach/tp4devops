@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BDCC — Master Big Data & Cloud Computing</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #a78bfa;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: #a78bfa; }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px 80px;
+        }
+
+        .badge {
+            background: rgba(167,139,250,0.15);
+            border: 1px solid #a78bfa;
+            color: #a78bfa;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #a78bfa, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #94a3b8;
+            max-width: 600px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #a78bfa, #60a5fa);
+            color: #fff;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(167,139,250,0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(167,139,250,0.6);
+        }
+
+        .btn-secondary {
+            border: 2px solid #a78bfa;
+            color: #a78bfa;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover { background: #a78bfa; color: #fff; }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 40px 60px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .stat-item { text-align: center; }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #a78bfa, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-item p { color: #64748b; font-size: 0.9rem; margin-top: 5px; }
+
+        .section { padding: 80px 60px; text-align: center; }
+
+        .section h2 { font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
+
+        .section h2 span {
+            background: linear-gradient(90deg, #a78bfa, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle { color: #64748b; margin-bottom: 50px; }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 35px 30px;
+            width: 280px;
+            transition: transform 0.3s, border-color 0.3s;
+            text-align: left;
+        }
+
+        .card:hover { transform: translateY(-8px); border-color: #a78bfa; }
+
+        .card-icon { font-size: 2.5rem; margin-bottom: 20px; }
+
+        .card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
+
+        .card p { color: #64748b; font-size: 0.9rem; line-height: 1.7; }
+
+        .pipeline-section {
+            padding: 60px;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .pipeline-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+
+        .pipeline-section h2 span {
+            background: linear-gradient(90deg, #a78bfa, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pipeline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pipe-step {
+            background: rgba(167,139,250,0.1);
+            border: 1px solid #a78bfa;
+            border-radius: 12px;
+            padding: 20px 25px;
+            text-align: center;
+            min-width: 130px;
+        }
+
+        .pipe-step .pipe-icon { font-size: 1.8rem; margin-bottom: 8px; }
+
+        .pipe-step p { font-size: 0.8rem; color: #a78bfa; font-weight: 600; }
+
+        .pipe-arrow { font-size: 1.5rem; color: #a78bfa; }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .tech-badge {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            transition: border-color 0.3s;
+        }
+
+        .tech-badge:hover { border-color: #a78bfa; color: #a78bfa; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #334155;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer span { color: #a78bfa; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-logo">BDCC</div>
+    <div class="nav-links">
+        <a href="#">Accueil</a>
+        <a href="#">Formation</a>
+        <a href="#">Projets</a>
+        <a href="#">Contact</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="badge">🎓 Master II — 2025/2026</div>
+    <h1>Bienvenue au Master<br/><span>Big Data & Cloud Computing</span></h1>
+    <p>
+        Une formation d'excellence dédiée aux technologies modernes
+        du Cloud, de la Data et du DevOps.
+    </p>
+    <div class="hero-buttons">
+        <a href="#" class="btn-primary">Découvrir la formation</a>
+        <a href="#" class="btn-secondary">Nos projets</a>
+    </div>
+</section>
+
+<div class="stats">
+    <div class="stat-item"><h3>5+</h3><p>TPs Pratiques</p></div>
+    <div class="stat-item"><h3>100%</h3><p>CI/CD Automatisé</p></div>
+    <div class="stat-item"><h3>Docker</h3><p>Containerisation</p></div>
+    <div class="stat-item"><h3>Jenkins</h3><p>Pipeline Automation</p></div>
+</div>
+
+<section class="section">
+    <h2>Modules <span>DevOps</span></h2>
+    <p class="section-subtitle">Les technologies que vous maîtriserez</p>
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon">🐳</div>
+            <h3>Docker</h3>
+            <p>Conteneurisation des applications, création d'images et gestion des réseaux Docker.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">⚙️</div>
+            <h3>Jenkins</h3>
+            <p>Automatisation des pipelines CI/CD et pipeline as code avec Jenkinsfile.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">☁️</div>
+            <h3>Cloud Computing</h3>
+            <p>Déploiement sur le cloud et gestion des infrastructures modernes.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📦</div>
+            <h3>Docker Hub</h3>
+            <p>Publication et gestion des images Docker sur le registry officiel.</p>
+        </div>
+    </div>
+</section>
+
+<div class="pipeline-section">
+    <h2>Notre Pipeline <span>CI/CD</span></h2>
+    <div class="pipeline">
+        <div class="pipe-step"><div class="pipe-icon">💻</div><p>Code</p></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="pipe-icon">🐙</div><p>GitHub</p></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="pipe-icon">⚙️</div><p>Jenkins</p></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="pipe-icon">🐳</div><p>Docker Build</p></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="pipe-icon">✅</div><p>Tests</p></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="pipe-icon">📦</div><p>Docker Hub</p></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="pipe-icon">🚀</div><p>Deploy</p></div>
+    </div>
+</div>
+
+<section class="section">
+    <h2>Tech <span>Stack</span></h2>
+    <p class="section-subtitle">Les outils utilisés dans ce TP</p>
+    <div class="tech-stack">
+        <div class="tech-badge">🐳 Docker</div>
+        <div class="tech-badge">⚙️ Jenkins</div>
+        <div class="tech-badge">🐙 GitHub</div>
+        <div class="tech-badge">📦 Docker Hub</div>
+        <div class="tech-badge">🌐 Nginx</div>
+        <div class="tech-badge">☕ Java</div>
+        <div class="tech-badge">🔷 IntelliJ IDEA</div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025/2026 — Master BDCC | Développé par <span>Votre Nom</span> | TP5 DevOps — Pr. Kamal EL GUEMMAT</p>
+</footer>
+
+</body>
+</html>
+```
+
+---
+
+## STEP 5.3 : Créer le Dockerfile
+```
+Clic droit sur tp4devops → New → File → "dockerfile"
