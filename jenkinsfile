@@ -50,5 +50,18 @@ pipeline {
       }
     }
 
+    stage('Deploy image') {
+      steps {
+        sh """
+          docker stop tp4-container || true
+          docker rm tp4-container || true
+          docker run -d \
+            --name tp4-container \
+            -p 80:80 \
+            $registry:$BUILD_NUMBER
+        """
+      }
+    }
+
   }
 }
